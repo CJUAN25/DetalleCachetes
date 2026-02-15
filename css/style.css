@@ -1,0 +1,846 @@
+/* ============================================
+   REGALO DIGITAL: LOFI NOCTURNO MÁGICO Y 3D
+   DISEÑO MEJORADO: MARCO JOYA + FONDO ANIMADO
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Dancing Script', 'Arial', sans-serif;
+    
+    /* Gradiente nocturno profundo del cielo */
+    background: radial-gradient(ellipse at center, #1a1535 0%, #0f0a25 50%, #050207 100%);
+    position: relative;
+    isolation: isolate;
+    animation: galaxyPulse 14s ease-in-out infinite alternate;
+}
+
+#pantalla-bienvenida {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(20px);
+}
+
+.bienvenida-card {
+    width: min(92vw, 520px);
+    padding: 2.3rem 2rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 20px 60px rgba(13, 22, 64, 0.5),
+        0 0 30px rgba(255, 220, 145, 0.2),
+        inset 0 0 18px rgba(255, 255, 255, 0.07);
+    text-align: center;
+}
+
+.bienvenida-titulo {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 4vw, 3.1rem);
+    color: #fff8e6;
+    text-shadow: 0 0 10px rgba(255, 214, 140, 0.75);
+    margin-bottom: 0.6rem;
+}
+
+.bienvenida-subtitulo {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+    margin-bottom: 1.5rem;
+}
+
+.bienvenida-input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    outline: none;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.bienvenida-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.bienvenida-input:focus {
+    border-color: rgba(255, 226, 156, 0.85);
+    box-shadow: 0 0 0 2px rgba(255, 226, 156, 0.2), 0 0 20px rgba(125, 211, 252, 0.25);
+}
+
+.bienvenida-btn {
+    margin-top: 1rem;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255, 215, 128, 0.24), rgba(157, 108, 255, 0.28));
+    color: #fff9e8;
+    font-size: 1rem;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bienvenida-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 215, 128, 0.18);
+}
+
+#mensaje-error {
+    min-height: 1.4rem;
+    margin-top: 0.8rem;
+    color: #ffd5df;
+    font-size: 0.95rem;
+    text-shadow: 0 0 8px rgba(255, 120, 160, 0.35);
+}
+
+.capa-nebulosa,
+.capa-estrellas-polvo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.capa-nebulosa {
+    background:
+        radial-gradient(circle at 18% 24%, rgba(180, 130, 255, 0.26), transparent 42%),
+        radial-gradient(circle at 74% 64%, rgba(78, 172, 255, 0.2), transparent 45%),
+        radial-gradient(circle at 52% 52%, rgba(255, 196, 116, 0.1), transparent 38%);
+    mix-blend-mode: screen;
+    filter: blur(24px) saturate(1.15);
+    animation: atmosferaNebulosa 26s ease-in-out infinite alternate;
+}
+
+.capa-estrellas-polvo {
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.16) 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 20%, rgba(255, 238, 185, 0.13) 0 1px, transparent 2px),
+        radial-gradient(circle at 40% 70%, rgba(173, 216, 255, 0.14) 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 76%, rgba(255, 255, 255, 0.12) 0 1px, transparent 2px);
+    background-size: 280px 280px, 340px 340px, 320px 320px, 380px 380px;
+    mix-blend-mode: overlay;
+    opacity: 0.7;
+    animation: polvoEstelar 38s linear infinite;
+}
+
+@keyframes atmosferaNebulosa {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.68;
+    }
+    100% {
+        transform: translate3d(-2.5%, 2%, 0) scale(1.06);
+        opacity: 0.96;
+    }
+}
+
+@keyframes polvoEstelar {
+    0% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.82;
+    }
+    100% {
+        transform: translate3d(-3%, -2%, 0);
+        opacity: 0.64;
+    }
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(circle at 15% 25%, rgba(147, 51, 234, 0.22), transparent 42%),
+        radial-gradient(circle at 78% 18%, rgba(59, 130, 246, 0.18), transparent 40%),
+        radial-gradient(circle at 50% 82%, rgba(236, 72, 153, 0.12), transparent 45%);
+    filter: blur(18px) saturate(1.1);
+    animation: nebulaBreath 18s ease-in-out infinite alternate;
+}
+
+@keyframes galaxyPulse {
+    0% {
+        background-position: 50% 50%;
+        filter: saturate(1);
+    }
+    100% {
+        background-position: 45% 55%;
+        filter: saturate(1.08);
+    }
+}
+
+@keyframes nebulaBreath {
+    0% {
+        transform: scale(1) translate3d(0, 0, 0);
+        opacity: 0.75;
+    }
+    100% {
+        transform: scale(1.08) translate3d(1.5%, -1.5%, 0);
+        opacity: 1;
+    }
+}
+
+#galaxyNebula {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.nebula-cloud {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--nebula-color, rgba(147, 51, 234, 0.22)) 0%, rgba(0, 0, 0, 0) 70%);
+    mix-blend-mode: screen;
+    filter: blur(12px);
+    animation: nebulaDrift var(--drift-duration, 28s) ease-in-out infinite alternate;
+}
+
+@keyframes nebulaDrift {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.35;
+    }
+    100% {
+        transform: translate3d(var(--drift-x, 40px), var(--drift-y, -30px), 0) scale(1.12);
+        opacity: 0.6;
+    }
+}
+
+/* ===== CONTENEDOR DE ESTRELLAS DE FONDO =====*/
+#starsBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    animation: starfieldPan 45s linear infinite;
+}
+
+@keyframes starfieldPan {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-1.5%, 1.2%, 0);
+    }
+}
+
+.estrella-fondo {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.2));
+    border-radius: 50%;
+    box-shadow: 0 0 7px rgba(255, 255, 255, 0.5);
+}
+
+.estrella-fondo.star-xs {
+    width: 1px;
+    height: 1px;
+}
+
+.estrella-fondo.star-sm {
+    width: 2px;
+    height: 2px;
+}
+
+.estrella-fondo.star-md {
+    width: 3px;
+    height: 3px;
+}
+
+.estrella-fondo.star-lg {
+    width: 4px;
+    height: 4px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.75);
+}
+
+.estrella-fondo.star-cyan {
+    background: radial-gradient(circle, rgba(125, 211, 252, 0.95), rgba(125, 211, 252, 0.1));
+}
+
+.estrella-fondo.star-gold {
+    background: radial-gradient(circle, rgba(252, 211, 77, 0.95), rgba(252, 211, 77, 0.08));
+}
+
+/* ===== LAYOUT PRINCIPAL: SPLIT SCREEN ===== */
+.main-container {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    width: 100%;
+    height: 100%;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== SECCIÓN IZQUIERDA: ROMPECABEZAS ===== */
+.puzzle-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    padding-left: 5vw;
+}
+
+.puzzle-scene {
+    width: 45vw;
+    min-width: 400px;
+    display: flex;
+    justify-content: flex-start;
+    perspective: 1500px;
+}
+
+.puzzle-container {
+    position: relative;
+    width: min(560px, 46vw);
+    height: min(560px, 46vw);
+    transform: rotateY(-8deg) rotateX(4deg) translateZ(0);
+    transform-style: preserve-3d;
+    animation: flotar 8s ease-in-out infinite;
+    box-shadow:
+        0 20px 50px rgba(138, 43, 226, 0.4),
+        0 0 20px rgba(255, 215, 0, 0.2),
+        0 30px 80px rgba(12, 18, 62, 0.45);
+}
+
+@keyframes flotar {
+    0%, 100% {
+        transform: rotateY(-8deg) rotateX(4deg) translateZ(0) translateY(0);
+    }
+    50% {
+        transform: rotateY(-8deg) rotateX(4deg) translateZ(0) translateY(-15px);
+    }
+}
+
+.puzzle-inner {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    border-radius: 24px;
+    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+.puzzle-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.puzzle-front {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.pieza {
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 0 14px rgba(255, 220, 145, 0.24),
+        inset 0 0 16px rgba(255, 255, 255, 0.14),
+        inset 0 -8px 20px rgba(8, 13, 40, 0.28);
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.5);
+}
+
+.pieza-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(12px) brightness(0.6);
+    transform: scale(1.08);
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.pieza-img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.p1 { grid-column: 1; grid-row: 1; }
+.p2 { grid-column: 3; grid-row: 1; }
+.p3 { grid-column: 1; grid-row: 2; }
+.p4 { grid-column: 3; grid-row: 2; }
+.p5 { grid-column: 2; grid-row: 1; }
+
+.p6 {
+    position: absolute;
+    width: 36%;
+    height: 52%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    z-index: 4;
+    border-radius: 24px;
+    box-shadow:
+        0 0 24px rgba(255, 213, 132, 0.35),
+        inset 0 0 22px rgba(255, 255, 255, 0.18);
+}
+
+.puzzle-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 34px rgba(255, 206, 118, 0.35);
+    padding: 1.2rem;
+}
+
+.mensaje-final {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    color: #fff8e6;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 214, 140, 0.9), 0 0 24px rgba(255, 196, 92, 0.45);
+    padding: 0 20px;
+}
+
+.acciones-amor {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 54px;
+}
+
+.btn-amor {
+    min-width: 130px;
+    padding: 0.65rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: linear-gradient(135deg, rgba(255, 214, 140, 0.22), rgba(173, 140, 255, 0.24));
+    color: #fff8ea;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 10px 22px rgba(14, 24, 80, 0.28);
+}
+
+.btn-amor:hover {
+    transform: translateY(-2px);
+}
+
+#btn-si {
+    box-shadow: 0 10px 24px rgba(255, 214, 140, 0.24);
+}
+
+.toast-amor {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%) translateY(14px);
+    padding: 0.75rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(24, 29, 78, 0.74);
+    color: #fff8e6;
+    font-size: 0.96rem;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast-amor.mostrar {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== SECCIÓN DERECHA: INTERFAZ ROMÁNTICA ===== */
+.ui-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 3rem 3.5vw 3rem 4vw;
+    gap: 2rem;
+    position: relative;
+    z-index: 10;
+    background: transparent;
+}
+
+/* ===== CONTADOR DE ESTRELLAS ===== */
+.mensaje-guia {
+    position: absolute;
+    top: 1.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92%, 560px);
+    text-align: center;
+    color: #ffe8c6;
+    font-size: clamp(1.15rem, 2vw, 1.6rem);
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 10px rgba(255, 214, 140, 0.45);
+}
+
+/* ===== TARJETA DE MENSAJE: GLASSMORPHISM ===== */
+.message-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 3rem 2.8rem;
+    max-width: 640px;
+    width: 100%;
+    min-height: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Resplandor dorado suave alrededor */
+    box-shadow: 
+        0 0 30px rgba(212, 175, 55, 0.3),
+        0 0 60px rgba(212, 175, 55, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+    transition: all 0.3s ease;
+    animation: cardGlowPulse 4s ease-in-out infinite;
+}
+
+#seccion-final {
+    display: none;
+    opacity: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 640px;
+    text-align: center;
+}
+
+.message-card:hover {
+    box-shadow: 
+        0 0 40px rgba(212, 175, 55, 0.5),
+        0 0 80px rgba(212, 175, 55, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+@keyframes cardGlowPulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 30px rgba(212, 175, 55, 0.3),
+            0 0 60px rgba(212, 175, 55, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 50px rgba(212, 175, 55, 0.4),
+            0 0 100px rgba(212, 175, 55, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+}
+
+@keyframes fadeInMessage {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem, 4.4vw, 3.6rem);
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    animation: fadeInMessage 0.6s ease-in-out;
+}
+
+.message-signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #d4af37;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    margin-top: 1rem;
+}
+
+/* ===== DECORACIÓN: ESTRELLA 4-PUNTAS ===== */
+.decoration-star {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    font-size: 3rem;
+    color: rgba(212, 175, 55, 0.6);
+    opacity: 0.5;
+    animation: starFloat 6s ease-in-out infinite;
+}
+
+@keyframes starFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+    }
+}
+
+/* ===== ESTRELLAS FUGACES (PRINCIPALES) ===== */
+.shooting-star {
+    position: fixed;
+    cursor: pointer;
+    will-change: transform, opacity;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle, var(--head-color, #00ffff), rgba(255, 100, 200, 0.85));
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--head-glow, #00ffff), 0 0 22px rgba(255, 100, 200, 0.75);
+}
+
+.shooting-star::after {
+    content: '';
+    position: absolute;
+    right: 3px;
+    height: 2px;
+    width: var(--trail-size, 56px);
+    background: linear-gradient(90deg, var(--trail-color, rgba(255, 100, 200, 0.8)), transparent);
+    box-shadow: 0 0 12px var(--trail-color, rgba(255, 100, 200, 0.6));
+}
+
+/* ===== ESTRELLA FUGAZ PRINCIPAL (ATRAPAR ESTRELLAS) ===== */
+.estrella-fugaz {
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f8fafc 35%, #bfdbfe 72%, rgba(191, 219, 254, 0.15) 100%);
+    box-shadow:
+        0 0 22px rgba(255, 255, 255, 1),
+        0 0 44px rgba(125, 211, 252, 0.95),
+        0 0 64px rgba(252, 211, 77, 0.5);
+    cursor: pointer;
+    pointer-events: auto;
+    transform-origin: center;
+    animation: estrellaGlow 1.3s ease-in-out infinite alternate;
+}
+
+.estrella-fugaz::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+    filter: blur(1.2px);
+    pointer-events: none;
+}
+
+@keyframes estrellaGlow {
+    0% {
+        filter: saturate(1) brightness(0.96);
+    }
+    100% {
+        filter: saturate(1.15) brightness(1.12);
+    }
+}
+
+/* ===== MODAL ===== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(15, 12, 41, 0.95), rgba(48, 43, 99, 0.95));
+    border: 2px solid rgba(255, 100, 200, 0.5);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(100, 200, 255, 0.3),
+                0 0 30px rgba(255, 100, 200, 0.2);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-message {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.6;
+    text-shadow: 0 0 10px rgba(255, 100, 200, 0.4);
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    float: right;
+    transition: color 0.2s;
+    text-shadow: 0 0 10px rgba(255, 100, 200, 0.5);
+}
+
+.close-btn:hover {
+    color: #ff64c8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+    
+    .puzzle-section {
+        grid-row: 1;
+        min-height: 360px;
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    .puzzle-scene {
+        width: 86vw;
+        min-width: 0;
+        justify-content: center;
+    }
+
+    .puzzle-container {
+        width: min(86vw, 400px);
+        height: min(86vw, 400px);
+    }
+    
+    .ui-section {
+        grid-row: 2;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+    
+    .puzzle-section {
+        min-height: 300px;
+    }
+
+    .puzzle-scene {
+        width: 90vw;
+    }
+
+    .puzzle-container {
+        width: min(90vw, 360px);
+        height: min(90vw, 360px);
+    }
+    
+    .message-text {
+        font-size: 1.2rem;
+    }
+    
+    .message-card {
+        padding: 1.5rem;
+    }
+}

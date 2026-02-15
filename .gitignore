@@ -1,0 +1,25 @@
+# Dependencias y módulos
+node_modules/
+package-lock.json
+yarn.lock
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Videos temporales
+assets/videos/*.tmp
+
+# Enviroment
+.env
+.env.local

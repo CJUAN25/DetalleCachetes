@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Regalo de Amor ✨</title>
+    
+    <!-- Google Fonts: Tipografía elegante cursiva -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="pantalla-bienvenida">
+        <div class="bienvenida-card" id="bienvenidaCard">
+            <h1 class="bienvenida-titulo">Bienvenida a nuestro sueño</h1>
+            <p class="bienvenida-subtitulo">Para entrar, ingresa la fecha en la que empezó todo...</p>
+            <input type="text" id="input-fecha" class="bienvenida-input" placeholder="DD/MM/AAAA" autocomplete="off">
+            <button id="btn-desbloquear" class="bienvenida-btn">Desbloquear Mágia ✨</button>
+            <p id="mensaje-error"></p>
+        </div>
+    </div>
+
+    <div class="capa-nebulosa"></div>
+    <div class="capa-estrellas-polvo"></div>
+
+    <div class="main-container">
+    <!-- SECCIÓN IZQUIERDA: ROMPECABEZAS MÁGICO -->
+        <section class="puzzle-section">
+            <div class="puzzle-scene">
+                <div class="puzzle-container" id="puzzleContainer">
+                    <div class="puzzle-inner" id="puzzleInner">
+                        <div class="puzzle-face puzzle-front">
+                            <div class="pieza p1" id="pieza1"></div>
+                            <div class="pieza p2" id="pieza2"></div>
+                            <div class="pieza p3" id="pieza3"></div>
+                            <div class="pieza p4" id="pieza4"></div>
+                            <div class="pieza p5" id="pieza5"></div>
+                            <div class="pieza p6" id="pieza6"></div>
+                        </div>
+
+                        <div class="puzzle-face puzzle-back">
+                            <p class="mensaje-final">
+                                "Lograste armar nuestros recuerdos... ahora la pregunta es: ¿quieres seguir creando más conmigo? 💗 ¿Quieres ser mi San Valentín?"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DERECHA: UI ROMÁNTICA -->
+        <section class="ui-section">
+            <div class="mensaje-guia">Vida mía, esfuérzate por atrapar las estrellas ✨</div>
+
+            <!-- Tarjeta de mensaje con efecto glassmorphism -->
+            <div class="message-card">
+                <p class="message-text" id="messageText">
+                    hola piroba
+                </p>
+                <p class="message-signature" id="messageSignature">- Juan</p>
+            </div>
+
+            <div id="seccion-final">
+                <p class="mensaje-final" id="mensajeFinalPuzzle">
+                    Amor, si te esforzaste... ahora me gustaría saber(acepto cualquier respuesta sin enojarme):
+                </p>
+                <div class="acciones-amor" id="accionesAmor">
+                    <button id="btn-si" class="btn-amor">Sí</button>
+                    <button id="btn-no" class="btn-amor">No</button>
+                </div>
+            </div>
+
+            <div class="decoration-star">✦</div>
+        </section>
+    </div>
+
+    <!-- Modal para mensajes (no visible en el diseño, pero funcional) -->
+    <div class="modal" id="messageModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            <p class="modal-message" id="modalMessage"></p>
+        </div>
+    </div>
+
+    <div id="toastAmor" class="toast-amor" aria-live="polite"></div>
+
+    <!-- Librerias externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <!-- Scripts propios -->
+    <script src="js/main.js"></script>
+</body>
+</html>
