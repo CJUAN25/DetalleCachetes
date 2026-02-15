@@ -531,6 +531,34 @@ Estado: completada
     - Luego oculta la tarjeta normal (`.message-card`) y muestra `#seccion-final`
     - Animación de aparición con GSAP: `gsap.to('#seccion-final', { opacity: 1, duration: 1.5 })`
 
+### Gran sorpresa final al presionar “Sí” (15 feb 2026)
+
+- Se reemplazó el comportamiento simple del botón `#btn-si` por una escena final completa.
+- Al hacer clic en “Sí”:
+    - Se ocultan de inmediato la pregunta final y los botones `Sí/No`.
+    - El rompecabezas vuelve a mostrar su cara frontal (fotos) sin rotación de flip.
+    - Se crea dinámicamente la imagen central `assets/fotos/spotify-code.jpg` con glow neón.
+    - Las 6 piezas del puzzle se convierten a posicionamiento `fixed` y se animan alrededor del código central con GSAP.
+    - Se activa una lluvia continua de corazones (`💗💖💘💝💓`) con partículas CSS animadas.
+- Nuevos estilos incorporados en `css/style.css`:
+    - `.spotify-code-final`
+    - `.pieza-orbita-final`
+    - `.corazon-lluvia`
+    - `@keyframes caerCorazon`
+
+### Ajuste visual mágico extra (15 feb 2026)
+
+- El giro del rompecabezas para revelar el mensaje final se volvió más lento, suave y cinematográfico:
+    - Retardo previo aumentado
+    - Duración de rotación aumentada
+    - Easing más fluido y pulso visual del contenedor
+- El fondo se enriqueció con más creatividad y movimiento:
+    - Nueva capa de aurora dinámica (`body::after` + `@keyframes auroraDance`)
+    - Nueva capa `#magicDustBackground` generada por JS
+    - Orbes difuminados flotantes (`.magic-orb`) con movimiento GSAP
+    - Chispas brillantes (`.magic-spark`) con parpadeo y deriva vertical
+- Inicialización incluida en la experiencia principal y refresco en `resize` para mantener densidad y composición en cualquier tamaño de pantalla.
+
 ---
 
 ## 🔧 Próximos Pasos

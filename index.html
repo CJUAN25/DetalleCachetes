@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Regalo de Amor ✨</title>
     
-    <!-- Google Fonts: Tipografía elegante cursiva -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Tipografía elegante y legible -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <audio id="musica-fondo" loop hidden src="assets/audio/cancion-fondo.mp3"></audio>
+    <button id="btn-musica" class="btn-musica-flotante" style="display: none;">🔊</button>
+
     <div id="pantalla-bienvenida">
         <div class="bienvenida-card" id="bienvenidaCard">
             <h1 class="bienvenida-titulo">Bienvenida a nuestro sueño</h1>
@@ -37,6 +40,7 @@
                             <div class="pieza p4" id="pieza4"></div>
                             <div class="pieza p5" id="pieza5"></div>
                             <div class="pieza p6" id="pieza6"></div>
+                            <div class="pieza p7" id="pieza7"></div>
                         </div>
 
                         <div class="puzzle-face puzzle-back">
@@ -51,7 +55,7 @@
 
         <!-- SECCIÓN DERECHA: UI ROMÁNTICA -->
         <section class="ui-section">
-            <div class="mensaje-guia">Vida mía, esfuérzate por atrapar las estrellas ✨</div>
+            <div class="mensaje-guia">Atrapa las estrellas ✨</div>
 
             <!-- Tarjeta de mensaje con efecto glassmorphism -->
             <div class="message-card">
@@ -63,7 +67,7 @@
 
             <div id="seccion-final">
                 <p class="mensaje-final" id="mensajeFinalPuzzle">
-                    Amor, si te esforzaste... ahora me gustaría saber(acepto cualquier respuesta sin enojarme):
+                    Amor, si te esforzaste... ahora me gustaría saber (acepto cualquier respuesta sin enojarme):
                 </p>
                 <div class="acciones-amor" id="accionesAmor">
                     <button id="btn-si" class="btn-amor">Sí</button>
@@ -90,6 +94,6 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
     <!-- Scripts propios -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=20260215"></script>
 </body>
 </html>
