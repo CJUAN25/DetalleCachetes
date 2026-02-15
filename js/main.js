@@ -3,8 +3,6 @@
 // main.js - Mecánica principal "Atrapar Estrellas"
 // ============================================
 
-console.log('✨ Bienvenida, piroba ✨');
-
 // ===== ARRAY DE RECUERDOS (HISTORIAS ESPECIALES) =====
 const recuerdos = [
     'Una de nuestras primeras evidencias juntos, quién iba a pensar que esto sí iba a funcionar (igual sí tenía mucha fe).',
@@ -40,7 +38,6 @@ const mensajesPorPieza = {
 // ===== VARIABLES GLOBALES =====
 const totalObjetivo = 8;
 let estrellasAtrapadas = 0;
-let currentVideoIndex = 1;
 let piezasReveladas = 0;
 let finalPuzzleActivado = false;
 let puzzleCompletoPendienteFinal = false;
@@ -61,38 +58,6 @@ const puzzleConfig = [
 ];
 
 const ordenRevelado = ['pieza1', 'pieza2', 'pieza3', 'pieza4', 'pieza5', 'pieza6', 'pieza7'];
-
-// ===== SISTEMA DE CROSSFADE PARA VIDEO EN BUCLE INFINITO =====
-function initVideoCrossfade() {
-    const video1 = document.getElementById('backgroundVideo1');
-    const video2 = document.getElementById('backgroundVideo2');
-
-    if (!video1 || !video2) {
-        console.warn('⚠️ Los elementos de video no encontrados. Verifica los IDs.');
-        return;
-    }
-
-    const handleVideoEnd = (activeVideo, nextVideo, videoNum) => {
-        return function () {
-            nextVideo.currentTime = 0;
-            nextVideo.play().catch(() => {});
-
-            setTimeout(() => {
-                activeVideo.style.opacity = '0';
-                nextVideo.style.opacity = '1';
-                activeVideo.pause();
-                currentVideoIndex = videoNum === 1 ? 2 : 1;
-            }, 500);
-        };
-    };
-
-    video1.addEventListener('ended', handleVideoEnd(video1, video2, 1));
-    video2.addEventListener('ended', handleVideoEnd(video2, video1, 2));
-
-    video1.play().catch(() => {
-        console.warn('⚠️ Autoplay bloqueado. Se activará tras interacción del usuario.');
-    });
-}
 
 // ===== CAPA DE NEBULOSAS =====
 function initGalaxyNebula() {
